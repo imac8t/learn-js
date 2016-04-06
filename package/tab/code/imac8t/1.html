@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>tab</title>
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.1.0/octicons.min.css"> -->
+    <style media="screen">
+        body {
+            text-align: center;
+        }
+
+        .tab {
+            margin: 50px auto;
+            width: 90%;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        ul.nav-tab {}
+
+        ul.nav-tab>li {
+            display: inline-block;
+            width: 10%;
+            cursor: pointer;
+            border: 3px solid #000;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        ul.tab-content {
+            position: relative;
+            width: 90%;
+        }
+
+        ul.tab-content>li {
+            position: absolute;
+            width: 100%;
+            display: none;
+            text-align: center;
+        }
+
+        ul.tab-content>li.actived {
+            display: block;
+        }
+    </style>
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="tab">
+        <ul class="nav-tab">
+            <li data-target='one'>123333</li>
+            <li data-target="two">233333</li>
+            <li data-target="three">344444</li>
+            <li data-target="four">455555</li>
+            <li data-target="five">566666</li>
+        </ul>
+        <ul class="tab-content">
+            <li class="actived" id="one">比较喜欢烧脑高智商电影，本着对知乎er品味的信任，决定对社区里面这类电影的回答做个数据统计，统计相关热门问题的全部回答，找出其中各个高智商电影被提及次数，为寻找该类电影的朋友提供一些数据支持。
+            </li>
+            <li id="two">人）中，大概有六分之一的朋友推荐了这部电影。
+            </li>
+            <li id="three">统计词频，最后经过我的人工筛选合并，比如这种：《12只猴子》《十二猴子》《十二只猴子》被当成同一部电影参与最终数据生成，《第六感》被认为是《灵异第六感》的简写，《cube》《心慌方》和《异次元杀阵》认为是同一部影片等等，另外，电影两字及以下关键词容易与停用词混淆，影响整体质量，所以单独排列出来。不过鉴于个人能力有限，能过滤的谬误是比较明显的，所以肯定存在问题，仅作选片参考，观影前最好还需结合影评，特别是排名靠后的电影，废话 作者：赤戟 链接：https://www.zhihu.com/question/35811067/answer/73457585
+                来源：知乎 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+            </li>
+            <li id="four">来只是看看或者只是感谢或者只是收藏，而不点赞的都是耍流氓o(￣ヘ￣o#) 身为一个深度的悬疑片爱好者，让我来终结这个问题吧(=^ ^=) 其实，关于悬疑片，群众有一个很通俗的认识就是猜不到结局。借网络上的一句话来说就是：很多经典的悬疑片都有一个共同点，就是其剧情可以有无数种解析和组合，但它的主题却异常清晰：好莱坞在银幕上创造一个个奇妙的美梦，但在银幕下却 作者：夏目 链接：https://www.zhihu.com/question/35811067/answer/65986583
+                来源：知乎 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+            </li>
+            <li id="five">时候，第一个出现在我脑海中的必定是莱昂纳多主演的这部电影。梳理一下脉络，一方面可能是因为这是让我入坑的开始，另一方面也许是受之前看的《泰坦尼克号》和《盗梦空间》的影响吧。小李子演技越来越好，不服来辩╰(</li>
+        </ul>
+    </div>
+
+    <!-- <script src="https://cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
+    <script type="text/javascript">
+        // !(function(window) {
+            var navTab = document.getElementsByClassName('nav-tab');
+            var navTabLi=navTab[0].childNodes;
+            console.log(navTab.length);
+            var tabContent=document.getElementsByClassName('tab-content');
+            var tabContentLi=tabContent[0].childNodes;
+            navTab[0].addEventListener('click', ev => {
+                var target = ev.target.getAttribute('data-target');
+                console.log(typeof target,target);
+                var content=document.getElementById(target);
+                console.log(content);
+                if (cont) {
+                    
+                }
+            });
+        // });
+    </script>
+</body>
+
+</html>
