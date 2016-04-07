@@ -44,6 +44,7 @@
             width: 100%;
             display: none;
             text-align: center;
+            background: #ffffff;
         }
 
         ul.tab-content>li.actived {
@@ -84,8 +85,39 @@
     <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
     <script type="text/javascript">
         // !(function(window) {
+            var Tab = function({ele,trigger,contents,fisrtactive}) {
+                return {
+                    init:{
+                        this.ele:document.querySelectorAll(ele),
+                        this.tri:document.querySelectorAll(trigger),
+                        this.contents:document.querySelectorAll(contents),
+                        this.activeIndex:fisrtactive,
+                        this.setActiveIndex:this.contents.querySelector(this.activeIndex).setAttribute('class','actived'),
+                        this.last:this.contents.querySelector(this.activeIndex)
+                    },
+
+                }
+            };
+            Tab.prototype.main=function () {
+                this.ele[0].addEventListener('click',ev=>{
+                    var this.target =ev.target.getAttribute('data-target');
+                    console.log(this.target);
+                    var this.content=document.getElementById(this.target);
+                    var clas=this.content.getAttribute('class');
+                    if (/actived/.test(clas)) {
+
+                    } else {
+                        this.content.setAttribute('class','actived');
+                        this.last.
+                    }
+                })
+            }
+
+
+
             var navTab = document.getElementsByClassName('nav-tab');
             var navTabLi=navTab[0].childNodes;
+            var activeIndex
             console.log(navTab.length);
             var tabContent=document.getElementsByClassName('tab-content');
             var tabContentLi=tabContent[0].childNodes;
@@ -93,9 +125,11 @@
                 var target = ev.target.getAttribute('data-target');
                 console.log(typeof target,target);
                 var content=document.getElementById(target);
-                console.log(content);
-                if (cont) {
-                    
+                var clas=content.getAttribute('class');
+                if (/actived/.test(clas)) {
+
+                } else {
+                    content.setAttribute('class','actived');
                 }
             });
         // });
