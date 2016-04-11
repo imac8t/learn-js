@@ -90,12 +90,13 @@
         var navTabLi = navTab[0].children;
         var tabContent = document.getElementsByClassName('tab-content');
         var tabContentLi = tabContent[0].children;
+        var fisrtactive = 'one';
+        var last = fisrtactive;
+        document.querySelector('[data-target=\''+fisrtactive+'\']').className='actived';
+        document.querySelector('#'+fisrtactive).style.display='block';
         navTab[0].addEventListener('click',ev => {
             if (ev.target.tagName === 'LI') {
-                for (var i = 0; i < navTabLi.length; i++) {
-                    navTabLi[i].className='';
-                    tabContentLi[i].style.display='none';
-                }
+                
                 ev.target.className='actived';
                 var target = ev.target.getAttribute('data-target');
                 var content = document.getElementById(target);
