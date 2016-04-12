@@ -91,16 +91,21 @@
         var tabContent = document.getElementsByClassName('tab-content');
         var tabContentLi = tabContent[0].children;
         var fisrtactive = 'one';
-        var last = fisrtactive;
-        document.querySelector('[data-target=\''+fisrtactive+'\']').className='actived';
+        var tabFisrtActive =document.querySelector('[data-target=\''+fisrtactive+'\']'); tabFisrtActive.className= tabFisrtActive.className +' actived';
         document.querySelector('#'+fisrtactive).style.display='block';
         navTab[0].addEventListener('click',ev => {
-            if (ev.target.tagName === 'LI') {
-                
-                ev.target.className='actived';
-                var target = ev.target.getAttribute('data-target');
-                var content = document.getElementById(target);
-                content.style.display='block';
+            if (ev.target.tagName === 'LI' && /actived/.test(ev.target.className)===false) {
+                // (function(ev) {
+                    var tabLastActive=document.querySelector('.actived');
+                    var tabContentLastActive = document.querySelector('#'+tabLastActive.dataset.target);
+                    tabLastActive.className=tabLastActive.className.replace(/actived/,'');
+                    // 字符串replace方法返回替换后的字符串，不改变原字符串
+                    tabContentLastActive.style.display='none';
+                    ev.target.className='actived';
+                    var target = ev.target.dataset.target;
+                    var content = document.getElementById(target);
+                    content.style.display='block';
+                // })(ev);
             };
         },false);
 
