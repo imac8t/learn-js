@@ -61,11 +61,11 @@
 <body>
     <div class="tab">
         <ul class="nav-tab">
-            <li data-target='one'>123333</li>
-            <li data-target="two">233333</li>
-            <li data-target="three">344444</li>
-            <li data-target="four">455555</li>
-            <li data-target="five">566666</li>
+            <li data-target='one'>123333
+            </li><li data-target="two">233333
+            </li><li data-target="three">344444
+            </li><li data-target="four">455555
+            </li><li data-target="five">566666</li>
         </ul>
         <ul class="tab-content">
             <li id="one">比较喜欢烧脑高智商电影，本着对知乎er品味的信任，决定对社区里面这类电影的回答做个数据统计，统计相关热门问题的全部回答，找出其中各个高智商电影被提及次数，为寻找该类电影的朋友提供一些数据支持。
@@ -86,10 +86,17 @@
     <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
     <script type="text/javascript">
         'use strict'
-        function Tab({tabNav,tabContent,firstActived}) {
+        var Tab = function({tabNav,tabContent,firstActived,triggerType,onSwitch}) {
             this.tabNav = document.getElementsByClassName(tabNav)[0];
             this.tabContent = document.getElementsByClassName(tabContent);
             this.firstActived = firstActived;
+            this.triggerType = triggerType?{'click':"click",'hover':'mouseover'}[triggerType]:'click';
+
+            // this.onSwitch= function(onSwitchTarget) {
+            //     var this.onSwitchTarget = onSwitchTarget;
+            //
+            // };
+            this.init();
         };
         Tab.prototype={
             constructor:Tab,
@@ -97,7 +104,8 @@
                 var tabFirstActived =document.querySelector('[data-target=\''+this.firstActived+'\']');
                 tabFirstActived.className= tabFirstActived.className +' actived';
                 document.querySelector('#'+this.firstActived).style.display='block';
-                this.tabNav.addEventListener('click',ev => {
+                console.log(this.triggerType);
+                this.tabNav.addEventListener(this.triggerType,ev => {
                     if (ev.target.tagName === 'LI' && /actived/.test(ev.target.className)===false) {
                         // (function(ev) {
                             var tabLastActive=document.querySelector('.actived');
@@ -109,6 +117,9 @@
                             var target = ev.target.dataset.target;
                             var content = document.getElementById(target);
                             content.style.display='block';
+                            // if (target === onSwitchTarget) {
+                            //     this.onSwitch();
+                            // }
                         // })(ev);
                     };
                 },false);
@@ -117,9 +128,12 @@
         var t = new Tab({
             tabNav:"nav-tab",
             tabContent:'tab-content',
-            firstActived:'one'
+            firstActived:'one',
+            triggerType:'hover'
+            // onSwitch:function('one') {
+            //     console.log('123');
+            // }
         });
-        t.init();
         // var navTab = document.getElementsByClassName('nav-tab');
         // var navTabLi = navTab[0].children;
         // var tabContent = document.getElementsByClassName('tab-content');
