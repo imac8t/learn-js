@@ -85,31 +85,48 @@
     <!-- <script src="https://cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
     <script type="text/javascript">
-        'use strict'
-        var Tab = function({tabNav,tabContent,firstActived,triggerType,onSwitch}) {
-            this.tabNav = document.getElementsByClassName(tabNav)[0];
-            this.tabContent = document.getElementsByClassName(tabContent);
-            this.firstActived = firstActived;
-            this.triggerType = triggerType?{'click':"click",'hover':'mouseover'}[triggerType]:'click';
+            'use strict'
+        var Tab = function(options) {
+            // this.tabNav = document.getElementsByClassName(tabNav)[0];
+            // this.tabContent = document.getElementsByClassName(tabContent);
+            // this.firstActived = firstActived;
+            // this.triggerType = triggerType?{'click':"click",'hover':'mouseover'}[triggerType]:'click';
 
             // this.onSwitch= function(onSwitchTarget) {
             //     var this.onSwitchTarget = onSwitchTarget;
             //
             // };
-            this.init();
+            this.init(options);
         };
         Tab.prototype={
             constructor:Tab,
-            init:function() {
-                var tabFirstActived =document.querySelector('[data-target=\''+this.firstActived+'\']');
+            default:{
+                tabNav:"nav-tab",
+                tabContent:'tab-content',
+                firstActived:null,
+                triggerType:'click',
+                onSwitch:null
+            },
+            init:function(options){
+                var Default = this.default,
+                key;
+                options = options ||{};
+                for (key in Default) {
+                    options[key]=options[key]||Default[key];
+                    console.log(key,':',options[key])
+                };
+                options.triggerType=options.triggerType!=='click'?'mouseover':'click';
+                var ele_tabNav=document.getElementsByClassName(options.tabNav)[0],
+                ele_tabContent=document.getElementsByClassName(options.tabContent)[0],
+                tabFirstActived =ele_tabNav.querySelector('[data-target=\''+options.firstActived+'\']');
                 tabFirstActived.className= tabFirstActived.className +' actived';
-                document.querySelector('#'+this.firstActived).style.display='block';
-                console.log(this.triggerType);
-                this.tabNav.addEventListener(this.triggerType,ev => {
+                ele_tabContent.querySelector('#'+options.firstActived).style.display='block';
+                ele_tabNav.addEventListener(options.triggerType,ev => {
+                    ev =ev||window.event;
                     if (ev.target.tagName === 'LI' && /actived/.test(ev.target.className)===false) {
                         // (function(ev) {
-                            var tabLastActive=document.querySelector('.actived');
-                            var tabContentLastActive = document.querySelector('#'+tabLastActive.dataset.target);
+                            var tabLastActive=ele_tabNav.querySelector('.actived');
+                            var tabContentLastActive = ele_tabContent.querySelector('#'+tabLastActive.dataset.target);
                             tabLastActive.className=tabLastActive.className.replace(/actived/,'');
                             // 字符串replace方法返回替换后的字符串，不改变原字符串
                             tabContentLastActive.style.display='none';
@@ -126,10 +143,10 @@
             }
         };
         var t = new Tab({
-            tabNav:"nav-tab",
-            tabContent:'tab-content',
+            // tabNav:"nav-tab",
+            // tabContent:'tab-content',
             firstActived:'one',
-            triggerType:'hover'
+            // triggerType:'hover'
             // onSwitch:function('one') {
             //     console.log('123');
             // }
