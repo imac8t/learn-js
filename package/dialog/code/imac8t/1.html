@@ -34,13 +34,14 @@
         </div>
 
         <script type="text/javascript">
-        function verticalCenter(selector) {
-            var ele = document.querySelector(selector);
-            ele.style.marginTop=(window.innerHeight-ele.offsetHeight)/2+'px';
-            console.log(ele.style.marginTop);
+        function verticalCenter(parent,selector) {
+            var father = document.querySelector(parent);
+            var target = father.querySelector(selector);
+            target.style.marginTop=(father.offsetHeight-target.offsetHeight)/2+'px';
+            console.log(target.style.marginTop);
         }
         window.addEventListener('resize',function(event) {
-            verticalCenter('.modalContainer');
+            verticalCenter('.modalDialog','.modalContainer');
         });
         </script>
     </body>
