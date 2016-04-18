@@ -15,7 +15,6 @@
             border: 3px solid #000;
         }
         .modalContainer{
-            position: absolute;
             background: #ffffff;
             width: 500px;
             margin: 0 auto;
@@ -35,10 +34,14 @@
         </div>
 
         <script type="text/javascript">
-        function getWindowSize() {
-
-            return
+        function verticalCenter(selector) {
+            var ele = document.querySelector(selector);
+            ele.style.marginTop=(window.innerHeight-ele.offsetHeight)/2+'px';
+            console.log(ele.style.marginTop);
         }
+        window.addEventListener('resize',function(event) {
+            verticalCenter('.modalContainer');
+        });
         </script>
     </body>
 </html>
