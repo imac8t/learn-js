@@ -10,9 +10,12 @@
             background: #000;
             opacity: 0.3;
             filter: alpha(opacity=0.5);
-            width: 100%;
-            height: 100%;
             border: 3px solid #000;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
         }
         .modalContainer{
             background: #ffffff;
@@ -23,7 +26,7 @@
     </head>
     <body>
         <button type="button" name="button" id='btn'>Click me</button>
-        <div class="modalDialog">
+        <div class="modalMask">
             <div class="modalContainer">
                 <div class="modalTitle">
                     <h1>modalDialog</h1>
@@ -43,6 +46,7 @@
         window.addEventListener('resize',function(event) {
             verticalCenter('.modalDialog','.modalContainer');
         });
+        verticalCenter('.modalDialog','.modalContainer');
         </script>
     </body>
 </html>
