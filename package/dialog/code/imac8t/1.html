@@ -1,48 +1,117 @@
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Dialog</title>
-        <style media="screen">
-        .modalDialog{
-            position: absolute;
-            background: #000;
-            opacity: 0.3;
-            filter: alpha(opacity=0.5);
-            width: 100%;
-            height: 100%;
-            border: 3px solid #000;
+
+<head>
+    <meta charset="utf-8">
+    <title>Dialog</title>
+    <style media="screen">
+        * {
+            margin: 0;
+            padding: 0;
         }
-        .modalContainer{
+
+        a {
+            text-decoration: none;
+        }
+
+        .modalMask {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background: gray;
+            opacity: 0.5;
+            filter: opacity(=50);
+            z-index: 999;
+        }
+
+        .modalDialog {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: auto;
+            z-index: 1000;
+        }
+
+        .modalContainer {
             background: #ffffff;
             width: 500px;
             margin: 0 auto;
+            border: 4px solid gray;
+            position: relative;
         }
-        </style>
-    </head>
-    <body>
-        <button type="button" name="button" id='btn'>Click me</button>
-        <div class="modalDialog">
-            <div class="modalContainer">
-                <div class="modalTitle">
-                    <h1>modalDialog</h1>
-                </div>
-                <div class="modalBody"></div>
-                <div class="modalFooter"></div>
+
+        .modalTitle {
+            border-bottom: 1px solid gray;
+            margin: 10px;
+        }
+
+        .modalBody {
+            margin: 10px;
+        }
+
+        .close_btn {
+            position: absolute;
+            top: 20px;
+            right: 10px;
+            vertical-align: middle;
+        }
+        .modalFooter{
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
+    <script type="text/javascript">
+
+    </script>
+</head>
+
+<body>
+    <button type="button" name="button" id='btn'>Click me</button>
+    <div class="modalMask"></div>
+    <div class="modalDialog">
+        <div class="modalContainer">
+            <div class="modalTitle">
+                <h1>标题</h1>
+                <span class="close_btn">
+                        <a href="">关闭</a>
+                </span>
+            </div>
+            <div class="modalBody">
+                内容内容 内容内容 内容内容 内容内容 内容内容 内容内容
+            </div>
+            <div class="modalFooter">
+
             </div>
         </div>
+    </div>
 
-        <script type="text/javascript">
-        function verticalCenter(parent,selector) {
-            var father = document.querySelector(parent);
-            var target = father.querySelector(selector);
-            target.style.marginTop=(father.offsetHeight-target.offsetHeight)/2+'px';
+    <script type="text/javascript">
+        function verticalCenter(selector,parent ) {
+            var father=(parent!==undefined&&parent!==null)?document.querySelector(parent):false,
+            target = (father)?father.querySelector(selector):document.querySelector(selector),
+            fatherHeight=father.offsetHeight||window.innerHeight;
+            target.style.marginTop = (fatherHeight - target.offsetHeight) / 2 + 'px';
             console.log(target.style.marginTop);
         }
-        window.addEventListener('resize',function(event) {
-            verticalCenter('.modalDialog','.modalContainer');
+        verticalCenter('.modalContainer','.modalDialog');
+        window.addEventListener('resize', function(event) {
+            verticalCenter('.modalContainer','.modalDialog');
         });
-        </script>
-    </body>
+        var dialog = function(options) {
+            this.init();
+        }
+        dialog.prototype = {
+            constructor:dialog,
+            DEFAULT:{
+                mask:'modalMask',
+                
+            }
+        }
+    </script>
+</body>
+
 </html>
