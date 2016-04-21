@@ -101,14 +101,22 @@
         window.addEventListener('resize', function(event) {
             verticalCenter('.modalContainer','.modalDialog');
         });
-        var dialog = function(options) {
+        var Dialog = function(options) {
+            this.options =options;
             this.init();
         }
-        dialog.prototype = {
-            constructor:dialog,
+        Dialog.prototype = {
+            constructor:Dialog,
             DEFAULT:{
                 mask:'modalMask',
-                
+                trigger:document.querySelector(this.options.trigger),
+                modalDialog:document.querySelector(this.options.father),
+            },
+            init:{
+
+            },
+            addMask:function() {
+
             }
         }
     </script>
