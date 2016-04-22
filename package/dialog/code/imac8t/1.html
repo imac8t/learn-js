@@ -90,13 +90,14 @@
     </div>
 
     <script type="text/javascript">
+        'use strict'
         function verticalCenter(selector,parent ) {
             var father=(parent!==undefined&&parent!==null)?document.querySelector(parent):false,
             target = (father)?father.querySelector(selector):document.querySelector(selector),
             fatherHeight=father.offsetHeight||window.innerHeight;
             target.style.marginTop = (fatherHeight - target.offsetHeight) / 2 + 'px';
             console.log(target.style.marginTop);
-        }
+        };
         verticalCenter('.modalContainer','.modalDialog');
         window.addEventListener('resize', function(event) {
             verticalCenter('.modalContainer','.modalDialog');
@@ -104,19 +105,21 @@
         var Dialog = function(options) {
             this.options =options;
             this.init();
-        }
+        };
         Dialog.prototype = {
             constructor:Dialog,
             DEFAULT:{
                 mask:'modalMask',
                 trigger:document.querySelector(this.options.trigger),
-                modalDialog:document.querySelector(this.options.father),
+                modalDialog:document.querySelector(this.options.father)
             },
             init:{
 
             },
             addMask:function() {
-
+                var ele_mask = document.createElement('div');
+                ele_mask.className=mask;
+                document.body.insertBefore(ele_mask,DEFAULT.modalDialog);
             }
         }
     </script>
